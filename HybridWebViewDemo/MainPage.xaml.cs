@@ -14,12 +14,20 @@ public partial class MainPage : ContentPage
 
     private async void OnInvokeJSMethodButtonClicked(object sender, EventArgs e)
     {
+#if ANDROID
         hybridWebView.EvaluateJavaScriptAsync("window.location = 'https://0.0.0.1/index.html#1234';");
+#elif IOS
+        hybridWebView.EvaluateJavaScriptAsync("window.location = 'app://0.0.0.1/index.html#1234';");
+#endif
     }
 
     private async void OnInvokeAsyncJSMethodButtonClicked(object sender, EventArgs e)
     {
+#if ANDROID
         hybridWebView.EvaluateJavaScriptAsync("window.location = 'https://0.0.0.1/index.html?1234';");
+#elif IOS
+        hybridWebView.EvaluateJavaScriptAsync("window.location = 'app://0.0.0.1/index.html?1234';");
+#endif
     }
 
     private void hybridWebView_RawMessageReceived(object sender, HybridWebViewRawMessageReceivedEventArgs e)
